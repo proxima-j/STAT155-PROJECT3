@@ -9,3 +9,67 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r load-packages, message = FALSE, echo=FALSE}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(broom)
+library(knitr)
+```
+
+> Introduction to Topic
+
+Sport, as an area receiving increased attention, responds as a result of increased awareness of people to their physical health, especially during the weird year 2020, where the pandemic changes the way of living as well as sport. Some sports benefit from it, some in alternative. Power lifting is a strength sport that consists of three attempts at maximal weight on three lifts: squat, bench press, and dead lift. At the same time, a perfect self-training exercise while staying at home during the pandemic. The central question of power lifting is how to lift successfully. This report contributes to discussing why someone successfully lifted as they expected while others didn’t use logistic regression.
+
+> Research Questions
+
+> Data
+
+> Context
+
+In this report, we’ll use data from the OpenPowerlifting database as of April 2019. OpenPowerlifting is creating a public-domain archive of power lifting history. Power lifting is a sport in which competitors compete to lift the most weight for their class in three separate barbell lifts: the Squat, Bench, and Dead lift. The data is represented by openpowerlifting.csv, which includes all information on the meets (competitions) as well as the competitors who attended those meets worldwide. This dataset tracks 2554800 entries for 668172 lifters from 39909 meets. All the data in the dataset are collected by a team of about eight power lifters from official results posted on federations’ websites. Find more information about the dataset and download the openpowerlifting.csv file on Kaggle: https://www.kaggle.com/open-powerlifting/powerlifting-database. 
+
+```{r load-data, message = FALSE}
+# loading dataset
+lifting <- read_csv (file = "openpowerlifting.csv")
+```
+
+> Cleaning
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Filter data age
+lifting1<- lifting[!is.na(lifting$TotalKg), ] %>%
+  filter(Age >= 18 & Age <= 40)
+#filter the body weight
+lifting1 <- lifting[!is.na(lifting$TotalKg),]
+lifting1 <- lifting1[!is.na(lifting1$BodyweightKg),]
+lifting1 %>%
+  filter(BodyweightKg >= 50 & BodyweightKg <= 150)
+```
+
+> Linear Regression
+
+> Exploratory Data Analysis
+
+> Model Creation
+
+> Fitted Model
+
+> Model Interpretation
+
+> Model Evaluation
+
+
+> Conclusion 
+
+> General Takeaways
+
+> Limitation
+
+> Appendix
+> Works Cited
+
+OpenPowerlifting. “Powerlifting Database.” Kaggle, April 25, 2019. https://www.kaggle.com/open-powerlifting/powerlifting-database.
+
+> R Code
