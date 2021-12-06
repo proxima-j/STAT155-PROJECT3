@@ -39,7 +39,9 @@ lifting <- read_csv (file = "openpowerlifting.csv")
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # Filter data age
-lifting1<- lifting[!is.na(lifting$TotalKg), ] %>%
+lifting1 <- lifting[!is.na(lifting$TotalKg), ]
+lifting1 <- lifting1[!is.na(lifting1$BodyweightKg),]
+lifting1  %>%
   filter(Age >= 18 & Age <= 40)
 #filter the body weight
 lifting1 <- lifting[!is.na(lifting$TotalKg),]
