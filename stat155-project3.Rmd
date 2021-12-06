@@ -1,0 +1,11 @@
+---
+title: "STAT155-PROJECT3"
+author: "Jenny Li, Xiang Li"
+date: "2021/12/6"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
