@@ -67,15 +67,28 @@ lifting1  %>%
 > Exploratory Data Analysis
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# lifting1 %>%
+#   ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex)) +
+#   geom_jitter() +
+#   geom_smooth() +
+#   labs(x = 'Body Weight (kg)',
+#        y = 'Total Lifting (kg)',
+#        color = 'Sex') +
+#   theme_minimal() +
+#   scale_color_brewer(palette = "Paired")
+
 lifting1 %>%
-  ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex)) + 
-  geom_jitter() +
-  geom_smooth() +
-  labs(x = 'Body Weight (kg)', 
-       y = 'Total Lifting (kg)', 
-       color = 'Sex') + 
-  theme_minimal() + 
-  scale_color_brewer(palette = "Paired") 
+  ggplot(aes(x = BodyweightKg, y = TotalKg, group = Age, color = Sex)) + 
+  geom_line(size = 0.5) +
+  geom_smooth(se = FALSE, size = 1.5, color = "black", method = "loess") +
+  facet_wrap(~ Sex) +
+  labs(title = "Life expectancy over time by continent", 
+       x = "Year", y = "Life Expectancy") +
+  theme_bw(base_size = 16) + 
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"), 
+        legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        panel.spacing.x = unit(0.75, "cm"))
 ```
 
 > Model Creation
@@ -85,11 +98,12 @@ lifting1 %>%
 $$[ TotalWeightLifting | bodyweight ] = \beta_0 + \beta_1 bodyweight + \beta_2 sex + \beta_3 age$$
 ```{r}
 mod1 <- lm(with(TotalKg ~ BodyweightKg + Sex + Age, data = lifting1))
-#mod2 <- lm(with(TotalKg ~ BodyweightKg + Sex + BodyweightKg:Sex, data = lifting1))
 coef(mod1)
-coef(mod2)
 glance(mod1)
-#glance(mod2)
+
+# mod2 <- lm(with(TotalKg ~ BodyweightKg + Sex + Age+BodyweightKg:Sex, data = lifting1))
+# coef(mod2)
+# glance(mod2)
 ```
 
 
