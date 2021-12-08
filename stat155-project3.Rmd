@@ -36,7 +36,6 @@ lifting <- read_csv (file = "openpowerlifting.csv")
 
 > Cleaning
 
-
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # Filter data age
 lifting1 <- lifting[!is.na(lifting$TotalKg), ]
@@ -55,6 +54,10 @@ lifting1 %>%
 > Exploratory Data Analysis
 
 > Model Creation
+
+>Research Question: What is the impact of the body weight of the lifters on the total weight they successfully lifted?
+
+$$[ TotalWeightLifting | bodyweight ] = \beta_0 + \beta_1 bodweight $$
 
 > Fitted Model
 
