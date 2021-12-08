@@ -38,6 +38,8 @@ lifting <- read_csv (file = "openpowerlifting.csv")
 
 > Cleaning
 
+We first filter out all invalid data, which contains NA, in “TotalKg”, “BodyweightKg”, and “Age”. As the diagram shows, the lifters’ ages are concentrated from 18 to 40. Therefore, since the lifters’ ages are mainly distributed between 18 and 40,  we filter the dataset, in this particular dataset--participants, leaving only the lifters’ data between 18 and 40. 
+
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # Filter data age and body weight
 lifting1 <- lifting[!is.na(lifting$TotalKg), ]
