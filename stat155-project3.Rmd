@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(readr)
 library(dplyr)
 library(ggplot2)
+library(ggmosaic)
 library(broom)
 library(knitr)
 ```
@@ -58,17 +59,40 @@ lifting1%>%
 # Filter data age 
 lifting1  %>%
   filter(Age >= 18 & Age <= 40)
+
 ```
 
 > Linear Regression
 
 > Exploratory Data Analysis
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# create mosaic plot of liftingsuccess vs ageclass and equipment
+lifting1 %>%
+  ggplot() + 
+  geom_mosaic(aes(x = product(TotalKg, Age), fill = BodyweightKg)) +
+  facet_grid(. ~ Sex) +
+  scale_fill_manual(values = c('lightblue', 'steelblue')) + 
+  labs(x = 'Inferred Binary Equipment', y = 'Successfully Lifting? (1 = yes, 0 = no)', title = "Vis1. Successfully Lifting vs Equipment and AgeClass")+
+  theme_bw(base_size = 14) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12), 
+        axis.text.x = element_text(hjust = 1, vjust = 1))
+```
+
 > Model Creation
 
 >Research Question: What is the impact of the body weight of the lifters on the total weight they successfully lifted?
 
-$$[ TotalWeightLifting | bodyweight ] = \beta_0 + \beta_1 bodweight $$
+$$[ TotalWeightLifting | bodyweight ] = \beta_0 + \beta_1 bodyweight + \beta_2 sex + \beta_3 age$$
+```{r}
+mod1 <- lm(with(TotalKg ~ BodyweightKg + Sex + Age, data = lifting1))
+#mod2 <- lm(with(TotalKg ~ BodyweightKg + Sex + BodyweightKg:Sex, data = lifting1))
+coef(mod1)
+coef(mod2)
+glance(mod1)
+#glance(mod2)
+```
+
 
 > Fitted Model
 
