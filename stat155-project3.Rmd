@@ -67,7 +67,15 @@ lifting1  %>%
 > Exploratory Data Analysis
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-
+lifting1 %>%
+  ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex)) + 
+  geom_jitter() +
+  geom_smooth() +
+  labs(x = 'Body Weight (kg)', 
+       y = 'Total Lifting (kg)', 
+       color = 'Sex') + 
+  theme_minimal() + 
+  scale_color_brewer(palette = "Paired") 
 ```
 
 > Model Creation
