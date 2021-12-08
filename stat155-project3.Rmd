@@ -18,11 +18,11 @@ library(knitr)
 ```
 
 > Introduction to Topic
-
-Sport, as an area receiving increased attention, responds as a result of increased awareness of people to their physical health, especially during the weird year 2020, where the pandemic changes the way of living as well as sport. Some sports benefit from it, some in alternative. Power lifting is a strength sport that consists of three attempts at maximal weight on three lifts: squat, bench press, and dead lift. At the same time, a perfect self-training exercise while staying at home during the pandemic. The central question of power lifting is how to lift successfully. This report contributes to discussing why someone successfully lifted as they expected while others didn’t use logistic regression.
-
+Sport, as an area receiving increased attention, responds as a result of increased awareness of people to their physical health, especially during the weird year 2020, where the pandemic changes the way of living as well as sport. Some sports benefit from it, some in alternative. Powerlifting is a strength sport that consists of three attempts at maximal weight on three lifts: squat, bench press, and deadlift. At the same time, a perfect self-training exercise while staying at home during the pandemic. When talking about powerlifting, one question always arises and is curious by the people is that “what actually would the weight of the lifters affect the weight they are lifting?”. In this report, we would build up a linear regression model including the bodyweight of the lifters, the total weight they can lift, and other possible factors to discuss this question. regression.
+>
 > Research Questions
-
+In order to be more specific and accurate, we decided to restructure our research question into:  What is the impact of the body weight of the lifters on the total weight they successfully lifted? The response variable in this question would be the total weight the lifters successfully lifted, The term “total weight” refers to the total of best squat in the three lifts-- squat, bench press, and deadlift-- respectively. The two explanatory variables would be the bodyweight of the lifters and the age. The body weight would be a direct factor to the total weight, which, at the same time, provided the answer to our research question. Age, on the other hand, it’s possible to be a confounding variable, or at least a precision variable that is worth including as an explanatory variable: we believe that age is associated with the total weight, and not caused by body weight.
+>
 > Data
 
 > Context
@@ -38,16 +38,23 @@ lifting <- read_csv (file = "openpowerlifting.csv")
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Filter data age
+# Filter data age and body weight
 lifting1 <- lifting[!is.na(lifting$TotalKg), ]
 lifting1 <- lifting1[!is.na(lifting1$BodyweightKg),]
+lifting1 <- lifting1[!is.na(lifting1$Age),]
+
+# Distribution of age
+lifting1%>%
+  ggplot(aes(x=Age))+
+  geom_histogram(binwidth = 2,color='lightblue', fill='steelblue')+
+  ylab('Count') + 
+  xlab('Age') + 
+  theme_classic() + 
+  ggtitle('Distribution of Age Among the Lifters')
+
+# Filter data age 
 lifting1  %>%
   filter(Age >= 18 & Age <= 40)
-#filter the body weight
-lifting1 <- lifting[!is.na(lifting$TotalKg),]
-lifting1 <- lifting1[!is.na(lifting1$BodyweightKg),]
-lifting1 %>%
-  filter(BodyweightKg >= 50 & BodyweightKg <= 150)
 ```
 
 > Linear Regression
