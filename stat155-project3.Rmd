@@ -42,6 +42,10 @@ lifting <- read_csv (file = "openpowerlifting.csv")
 We first filter out all invalid data, which contains NA, in “TotalKg”, “BodyweightKg”, and “Age”. As the diagram shows, the lifters’ ages are concentrated from 18 to 40. Therefore, since the lifters’ ages are mainly distributed between 18 and 40,  we filter the dataset, in this particular dataset--participants, leaving only the lifters’ data between 18 and 40. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+# set.seed(10000)
+# my_sample <- sampel_n(lifting, size = 2000, replace = FALSE)
+
 # Filter data age and body weight
 lifting1 <- lifting[!is.na(lifting$TotalKg), ]
 lifting1 <- lifting1[!is.na(lifting1$BodyweightKg),]
@@ -57,7 +61,7 @@ lifting1%>%
   ggtitle('Distribution of Age Among the Lifters')
 
 # Filter data age 
-lifting1  %>%
+lifting1 <- lifting1 %>%
   filter(Age >= 18 & Age <= 40)
 
 ```
@@ -76,6 +80,17 @@ lifting1  %>%
 #        color = 'Sex') +
 #   theme_minimal() +
 #   scale_color_brewer(palette = "Paired")
+
+lifting1 %>%
+  ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex, group = AgeClass)) + 
+  geom_line(size = 0.5) +
+  geom_smooth(aes(group = AgeClass), 
+              se = FALSE, size = 1.5, color = "black", method = "loess") +
+  facet_wrap(~ AgeClass) +
+  labs(x = "Body weight (kg)", y = "Total Weight Lifting (kg)") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        legend.position = "none") +
+  theme_bw()
 
 lifting1 %>%
   ggplot(aes(x = BodyweightKg, y = TotalKg, group = Age, color = Sex)) + 
