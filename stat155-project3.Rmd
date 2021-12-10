@@ -42,14 +42,10 @@ lifting <- read_csv (file = "openpowerlifting.csv")
 We first filter out all invalid data, which contains NA, in “TotalKg”, “BodyweightKg”, and “Age”. As the diagram shows, the lifters’ ages are concentrated from 18 to 40. Therefore, since the lifters’ ages are mainly distributed between 18 and 40,  we filter the dataset, in this particular dataset--participants, leaving only the lifters’ data between 18 and 40. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-
-# set.seed(10000)
-# my_sample <- sampel_n(lifting, size = 2000, replace = FALSE)
-
 # Filter data age and body weight
 lifting1 <- lifting[!is.na(lifting$TotalKg), ]
 lifting1 <- lifting1[!is.na(lifting1$BodyweightKg),]
-lifting1 <- lifting1[!is.na(lifting1$Age),]
+lifting1 <- lifting1[!is.na(lifting1$AgeClass),]
 
 # Distribution of age
 lifting1%>%
@@ -62,15 +58,14 @@ lifting1%>%
 
 # Filter data age 
 lifting1 <- lifting1 %>%
-  filter(Age >= 18 & Age <= 40)
-
+  filter(AgeClass %in% c("18-19", "20-23", "24-34", "35-39", "40-44"))
 ```
 
 > Linear Regression
 
 > Exploratory Data Analysis
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache = TRUE}
 # lifting1 %>%
 #   ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex)) +
 #   geom_jitter() +
@@ -82,15 +77,26 @@ lifting1 <- lifting1 %>%
 #   scale_color_brewer(palette = "Paired")
 
 lifting1 %>%
-  ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex, group = AgeClass)) + 
+  ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex, group = AgeClass)) +
   geom_line(size = 0.5) +
-  geom_smooth(aes(group = AgeClass), 
+  geom_smooth(aes(group = AgeClass),
               se = FALSE, size = 1.5, color = "black", method = "loess") +
   facet_wrap(~ AgeClass) +
   labs(x = "Body weight (kg)", y = "Total Weight Lifting (kg)") +
   theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
         legend.position = "none") +
   theme_bw()
+
+lifting1$Sex <- as.factor(lifting1$Sex)
+lifting1 %>%
+  ggplot(aes(x = factor(Sex), y = TotalKg, group = Sex)) +
+  geom_boxplot() +
+  facet_wrap(~ AgeClass) +
+  labs(x = "Body weight (kg)", y = "Total Weight Lifting (kg)") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14), legend.position = "none") +
+  theme_bw()
+
+
 # 
 # lifting1 %>%
 #   ggplot(aes(x = BodyweightKg, y = TotalKg, group = Age, color = Sex)) + 
@@ -110,13 +116,13 @@ lifting1 %>%
 
 >Research Question: What is the impact of the body weight of the lifters on the total weight they successfully lifted?
 
-$$[ TotalWeightLifting | bodyweight ] = \beta_0 + \beta_1 bodyweight + \beta_2 sex + \beta_3 age$$
+$$[ TotalWeightLifting | bodyweight ] = \beta_0 + \beta_1 bodyweight + \beta_2 sexM + \beta_3 ageAgeClass20-23 + \beta_4 AgeClass24-34 + \beta_5 AgeClass35-39 + \beta_5 AgeClass40-44$$
 ```{r}
-mod1 <- lm(with(TotalKg ~ BodyweightKg + Sex + Age, data = lifting1))
+mod1 <- lm(with(TotalKg ~ BodyweightKg + Sex + AgeClass, data = lifting1))
 coef(mod1)
 glance(mod1)
 
-# mod2 <- lm(with(TotalKg ~ BodyweightKg + Sex + Age+BodyweightKg:Sex, data = lifting1))
+# mod2 <- lm(with(TotalKg ~ BodyweightKg + Sex + AgeClass+BodyweightKg:Sex, data = lifting1))
 # coef(mod2)
 # glance(mod2)
 ```
@@ -124,10 +130,25 @@ glance(mod1)
 
 > Fitted Model
 
+```{r}
+tidy(mod1)
+confint(mod1)
+```
+
 > Model Interpretation
 
 > Model Evaluation
 
+```{r}
+# residual plot
+augment(mod1) %>%
+    ggplot(aes(x = .fitted, y = .resid)) +
+    geom_point(color = "steelblue", alpha = 1/10) +
+    geom_smooth(color = "gold") +
+    geom_hline(yintercept = 0, color = "darkslategray") +
+    theme_minimal() +
+    labs(x = "Fitted values", y = "Residuals")
+```
 
 > Conclusion 
 
