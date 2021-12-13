@@ -112,10 +112,18 @@ augment(mod1)
 augment(mod1) %>%
     ggplot(aes(x = .fitted, y = .resid)) +
     geom_point(color = "steelblue", alpha = 1/10) +
-    geom_smooth(color = "gold") +
+    geom_smooth(se = FALSE, color = "gold") +
     geom_hline(yintercept = 0, color = "darkslategray") +
-    theme_minimal() +
-    labs(x = "Fitted values", y = "Residuals")
+    theme_classic() +
+    labs(x = "Fitted values", y = "Residuals", title = 'Residuals vs Fitted Values (Model 1)')
+
+augment(mod1) %>%
+  ggplot(aes(y = .resid, x = BodyweightKg)) + 
+  geom_point(color = "steelblue", alpha = 1/10) + 
+  geom_smooth(se = FALSE, color = "gold") + 
+  geom_hline(yintercept = 0, color = "darkslategray") + 
+  labs(x = 'Body Weight (kg)', y = 'Residuals', title = 'Residuals vs Explanatory Variable (Model 1)') + 
+  theme_classic()
 ```
 
 > Conclusion 
