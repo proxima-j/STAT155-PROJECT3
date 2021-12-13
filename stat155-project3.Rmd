@@ -68,14 +68,17 @@ lifting1 <- lifting1 %>%
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, cache = TRUE}
 lifting1 %>%
   ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex, group = AgeClass)) +
-  geom_point() +
-  geom_smooth(aes(group = AgeClass),
-              se = FALSE, size = 1.5, color = "black", method = "loess") +
+  geom_point() + 
+  geom_smooth(method = 'lm', se = FALSE, color = "black") +
   facet_wrap(~ AgeClass) +
   labs(x = "Body weight (kg)", y = "Total Weight Lifting (kg)") +
   theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
         legend.position = "none") +
+  scale_color_brewer(palette = "Paired") +
   theme_bw() 
+
+lifting1 %>%
+  summarize(cor(TotalKg, BodyweightKg))
 ```
 
 > Model Creation
@@ -87,7 +90,6 @@ $$[ TotalWeightLifting | BodyWeight, AgeClass, Sex ] = \beta_0 + \beta_1 bodywei
 mod1 <- lm(with(TotalKg ~ BodyweightKg + Sex + AgeClass, data = lifting1))
 coef(mod1)
 glance(mod1)
-cor(lifting1$BodyweightKg, lifting1$TotalKg)
 
 # mod2 <- lm(with(TotalKg ~ BodyweightKg + Sex + AgeClass+BodyweightKg:Sex, data = lifting1))
 # coef(mod2)
