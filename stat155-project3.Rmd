@@ -67,9 +67,9 @@ lifting1 <- lifting1 %>%
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, cache = TRUE}
 lifting1 %>%
-  ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex, group = AgeClass)) +
-  geom_point() + 
-  geom_smooth(method = 'lm', se = FALSE, color = "black") +
+  ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex)) +
+  geom_point(alpha = .5, pch = ".") + 
+  geom_smooth(method = 'lm', se = FALSE) +
   facet_wrap(~ AgeClass) +
   labs(x = "Body weight (kg)", y = "Total Weight Lifting (kg)") +
   theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
