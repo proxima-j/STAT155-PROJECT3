@@ -69,7 +69,7 @@ lifting1 <- lifting1 %>%
   Both female and male data show a relatively strong positive linear relationship (r = 0.3738088) between total weight lifting and body weight. However, the points for females and males are more clustered about the overall upward trend and just a few outliers in each age class graph. Considering the relationship between total weight lifting and body weight, we see that heavier lifters tend to have a higher total weight lifting. These relationships make sense because a larger body weight can have more power to lift more weight. 
   The fitted lines for males and females in each age group are almost parallel. In considering the relationship between total weight lifting and bodyweight for males and females, we see that males can always lift about 125 kg heavier than females when holding the age class and body weight constant. These relationships make sense because male lifters always have a larger power than female lifters.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, cache = TRUE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 lifting1 %>%
   ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex)) +
   geom_point(alpha = .5, pch = ".") + 
@@ -105,8 +105,7 @@ glance(mod1)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-tidy(mod1)
-confint(mod1)
+tidy(mod1, conf.int = TRUE)
 ```
 
 > Model Interpretation
