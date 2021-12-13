@@ -68,25 +68,26 @@ lifting1 <- lifting1 %>%
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, cache = TRUE}
 lifting1 %>%
   ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex, group = AgeClass)) +
-  geom_line(size = 0.5) +
+  geom_point() +
   geom_smooth(aes(group = AgeClass),
               se = FALSE, size = 1.5, color = "black", method = "loess") +
   facet_wrap(~ AgeClass) +
   labs(x = "Body weight (kg)", y = "Total Weight Lifting (kg)") +
   theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
         legend.position = "none") +
-  theme_bw()
+  theme_bw() 
 ```
 
 > Model Creation
 
 >Research Question: What is the impact of the body weight of the lifters on the total weight they successfully lifted?
 
-$$[ TotalWeightLifting | bodyweight ] = \beta_0 + \beta_1 bodyweight + \beta_2 sexM + \beta_3 ageAgeClass20-23 + \beta_4 AgeClass24-34 + \beta_5 AgeClass35-39 + \beta_5 AgeClass40-44$$
+$$[ TotalWeightLifting | BodyWeight, AgeClass, Sex ] = \beta_0 + \beta_1 bodyweight + \beta_2 sexM + \beta_3 ageAgeClass20-23 + \beta_4 AgeClass24-34 + \beta_5 AgeClass35-39 + \beta_6 AgeClass40-44$$
 ```{r}
 mod1 <- lm(with(TotalKg ~ BodyweightKg + Sex + AgeClass, data = lifting1))
 coef(mod1)
 glance(mod1)
+cor(lifting1$BodyweightKg, lifting1$TotalKg)
 
 # mod2 <- lm(with(TotalKg ~ BodyweightKg + Sex + AgeClass+BodyweightKg:Sex, data = lifting1))
 # coef(mod2)
@@ -107,6 +108,7 @@ confint(mod1)
 
 ```{r}
 # residual plot
+augment(mod1)
 augment(mod1) %>%
     ggplot(aes(x = .fitted, y = .resid)) +
     geom_point(color = "steelblue", alpha = 1/10) +
