@@ -113,7 +113,7 @@ tidy(mod1, conf.int = TRUE)
 
 > Model Interpretation
 
-Estimates: 
+#Estimates: 
 
 
 Based on our model, we estimate that the average total weight lifting for female lifters among those in the age class 18-19 in the 0kg body weight is 93.9983 kg. (Though this is not reasonable in reality, since it is impossible for a living individual to have 0kg body weight. Thus, the estimate of the intercept does not provide much information to us actually.) 
@@ -126,7 +126,7 @@ We estimate that the average total weight lifting for male lifters in the age cl
 
 The interpretations for the ageclass 24-34, ageclass 35-39, and ageclass 40-44 are similar to the interpretation for ageclass 20-23. However, for the lifters in ageclass 35-39, and ageclass 40-44,  the average total weight lifting is smaller instead of the higher than the total weight lifting for lifters in the age class 18-19 who are in the same body weight and gender. 
 
-95% confidence intervals:
+#95% confidence intervals:
 
 
 We are 95% confident that, in the population, the total weight lifting is between 2.5949 and 2.6410 kg greater than the total weight lifting when the lifters' total weight increased by 1kg of the same age class and gender. In this context, the word confident means our confidence in the interval construction process—the expectation that 95% of samples will generate confidence intervals that contain the true population value of this quantity. (Same as follows.)
@@ -137,7 +137,7 @@ We are 95% confident that, in the population, the total weight lifting by the li
 
 The interpretations for the ageclass 24-34, ageclass 35-39, and ageclass 40-44 are similar to the interpretation for ageclass 20-23.
 
-P-value: 
+#P-value: 
 
 
 The null hypothesis (H0) for the intercept is saying that whether the lifter is in the age class 18-19 holding other conditions constant does not have an effect on total weight lifting.
