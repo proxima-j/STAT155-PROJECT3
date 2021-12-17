@@ -115,47 +115,68 @@ tidy(mod1, conf.int = TRUE)
 
 Estimates: 
 
-  We estimate that the average total weight lifting for female lifters among those in the age class 18-19 in the 0kg body weight is 93.99834 kg. 
-We estimate that the average total weight lifting for lifters in the age class 20-23 is 36.95341 kg higher than the total weight lifting for lifters in the age class 18-19 who are in the same body weight and gender. 
-  We estimate that the difference in the average total weight lifting when body weight increased by 1 kg is 2.62192 kg higher when holding other variables constant. 
-  We estimate that the average total weight lifting for male lifters in the age class is 129.90265 kg higher than the total weight lifting for female lifters who are in the same body weight and age class. 
-  The interpretations for the ageclass 24-34, ageclass 35-39, and ageclass 40-44 are similar to the interpretation for ageclass 20-23.
-  
+
+Based on our model, we estimate that the average total weight lifting for female lifters among those in the age class 18-19 in the 0kg body weight is 93.9983 kg. (Though this is not reasonable in reality, since it is impossible for a living individual to have 0kg body weight. Thus, the estimate of the intercept does not provide much information to us actually.) 
+
+Additionally, we estimate that the average total weight lifting for lifters in the age class 20-23 is 36.9534 kg higher than the total weight lifting for lifters in the age class 18-19 who are in the same body weight and gender. 
+
+Also, we estimate that the difference in the average total weight lifting when body weight increased by 1 kg is 2.6219 kg higher when holding other variables constant. 
+
+We estimate that the average total weight lifting for male lifters in the age class is 129.9027 kg higher than the total weight lifting for female lifters who are in the same body weight and age class. 
+
+The interpretations for the ageclass 24-34, ageclass 35-39, and ageclass 40-44 are similar to the interpretation for ageclass 20-23. However, for the lifters in ageclass 35-39, and ageclass 40-44,  the average total weight lifting is smaller instead of the higher than the total weight lifting for lifters in the age class 18-19 who are in the same body weight and gender. 
+
 95% confidence intervals:
 
-  We are 95% confident that, in the population, the total weight lifting is between 2.594867 and 2.648973 kg greater than the total weight lifting when the lifters' total weight increased by 1kg of the same age class and gender. In this context, the word confident means our confidence in the interval construction process—the expectation that 95% of samples will generate confidence intervals that contain the true population value of this quantity.
-  We are 95% confident that, in the population, the total weight lifting by male lifters is between 128.508877 and 131.296432 kg greater than the total weight lifting by female lifters of the same age class and body weight. 
-  We are 95% confident that, in the population, the total weight lifting by the lifters in the age class 20-23 is between 35.014253 and 38.892560 kg greater than the total weight lifting by the lifters in the age class 18-19 of the same gender and body weight. 
-  The interpretations for the ageclass 24-34, ageclass 35-39, and ageclass 40-44 are similar to the interpretation for ageclass 20-23.
-  
+
+We are 95% confident that, in the population, the total weight lifting is between 2.5949 and 2.6410 kg greater than the total weight lifting when the lifters' total weight increased by 1kg of the same age class and gender. In this context, the word confident means our confidence in the interval construction process—the expectation that 95% of samples will generate confidence intervals that contain the true population value of this quantity. (Same as follows.)
+
+We are 95% confident that, in the population, the total weight lifting by male lifters is between 128.5089 and 131.2964 kg greater than the total weight lifting by female lifters of the same age class and body weight. 
+
+We are 95% confident that, in the population, the total weight lifting by the lifters in the age class 20-23 is between 35.0142 and 38.8926 kg greater than the total weight lifting by the lifters in the age class 18-19 of the same gender and body weight. 
+
+The interpretations for the ageclass 24-34, ageclass 35-39, and ageclass 40-44 are similar to the interpretation for ageclass 20-23.
+
 P-value: 
 
-  The null hypothesis (H0) for BodyweightKg is saying that bodyweight does not have an effect on total weight lifting.
-  The alternative hypothesis (HA) for BodyweightKg is saying that body weight has an effect on total weight lifting.
-  Since the p-value for BodyweightKg is zero, which is less than the threshold of 0.05, we do have sufficient evidence to reject the null hypothesis that bodyweight does not have an effect on total weight lifting. We reject the null hypothesis in favor of the alternative. 
-The null hypothesis (H0) for the intercept is saying that age class 18-19 does not have an effect on total weight lifting.
-  Since the p-value for the intercept is zero, which is less than the threshold of 0.05, we do have sufficient evidence to reject the null hypothesis that gender does not have an effect on total weight lifting. We reject the null hypothesis in favor of the age class 18-19 does have an effect on total weight lifting. 
-  The null hypothesis (H0) for SexM is saying that gender does not have an effect on total weight lifting.
-  Since the p-value for SexM is zero, which is less than the threshold of 0.05, we do have sufficient evidence to reject the null hypothesis that gender does not have an effect on total weight lifting. We reject the null hypothesis in favor of that gender has an effect on total weight lifting. 
-The null hypothesis (H0) for AgeClass20-23 is saying that age class 20-23 does not have an effect on total weight lifting.
-  Since the p-value for AgeClass20-23 is 6.25*10^305, which is less than the threshold of 0.05, we do have sufficient evidence to reject the null hypothesis that age class 20-23 does not have an effect on total weight lifting. We reject the null hypothesis in favor of that age class 20-23 has an effect on total weight lifting.
-  The interpretations for the ageclass 24-34, ageclass 35-39, and ageclass 40-44 are similar to the interpretation for ageclass 20-23.
-  Thus, we have evidence to support that body weight, age, class, and gender each have a relationship with total weight lifting.
+
+The null hypothesis (H0) for the intercept is saying that whether the lifter is in the age class 18-19 holding other conditions constant does not have an effect on total weight lifting.
+
+Since the p-value for the intercept is zero, which is less than the threshold of 0.05, we do have sufficient evidence to reject the null hypothesis that gender does not have an effect on total weight lifting. We reject the null hypothesis and in favor that the age class 18-19 does have an effect on total weight lifting. 
+
+In addition, the null hypothesis (H0) for BodyweightKg is saying that bodyweight does not have an effect on total weight lifting, after accounting for the other variables– gender and age classes.
+
+The alternative hypothesis (HA) for BodyweightKg, on the other hand, is saying that body weight has an effect on total weight lifting, after accounting for the other variables
+
+Similar to the intercept, since the p-value for BodyweightKg is zero, which is less than the threshold of 0.05, we do have sufficient evidence to reject the null hypothesis –bodyweight does not have an effect on total weight lifting– and in favor of the alternative. 
+
+Moreover, the null hypothesis (H0) for SexM is saying that there is no relationship between the gender and total weight lifting, after accounting for other variables.
+
+The p-value for SexM is also zero, which is less than the threshold of 0.05. Thus  we do have sufficient evidence to reject the null hypothesis that gender does not have an effect on total weight lifting. We reject the null hypothesis in favor of that gender has an effect on total weight lifting. 
+
+The null hypothesis (H0) for AgeClass20-23 is saying that age class 20-23 does not have an effect on total weight lifting, after accounting for other variables.
+
+Similarly, since the p-value for AgeClass20-23 is 6.25*10^305, which is less than the threshold of 0.05, we do have sufficient evidence to reject the null hypothesis that age class 20-23 does not have an effect on total weight lifting. We reject the null hypothesis in favor of that age class 20-23 has an effect on total weight lifting.
+
+The interpretations for the ageclass 24-34, ageclass 35-39, and ageclass 40-44 are similar to the interpretation for ageclass 20-23.
+
+Thus, we have evidence to support that body weight, age, class, and gender each have a relationship with total weight lifting.
+
 
 > Model Evaluation
 
-  This model has no extreme outliers, and the data are generally equally distributed. 
-  
-  The R-squared value for the model to predict total weight lifting is 20.9%, so we can explain about 20.9% of the variation in the total weight lifting using this model with three variables. 
-The adjusted R-squared is 0.209. Clearly, body weight, ageclass, and sex explain the minority variation in total weight lifting.
+Overall, this model has no extreme outliers, and the data are generally equally distributed. 
 
-  I don’t notice a particularly strong pattern either age class, sex, or body weight. This suggests that there isn’t any strong pattern of our model consistently over-or under-estimating total weight lifting for either of these groups. The spread of the residuals seems like it could perhaps be increasing slightly as fitted values. This suggests that more of our predictions are “bad”, in which the residuals are far from zero, in either direction, as the graph shows.
-  
-  The adjusted R-squared of mod1 is 0.20901, which means that about 20.9% of the residuals are accounted for in the regression model. 
-  
-  Residual value equals the observed value minus the estimated value. As the plots show, there seems to be no systematic error in these plots because the data are normal random distributed patterns in the plots. There is an equal spread of residuals across fitted values and explanatory variables. The dots are equally distributed around the residual lines. The data spreads wider when the bodyweight is between 100 to 150 kg. The residual standard error of 200.1854 gives us a sense of the “typical” size of our residuals, which is how far off do our predictions tend to be. 
-  
-  The residual standard error is the standard deviation of our residuals. The residual has a standard deviation of 200.1854, which means the average difference between the expected residuals from the mean. It turns out that the mean of our residuals will always be zero. So, our residual standard error gives us a sense of how tightly concentrated all of our residuals are around zero, which tells us how tightly concentrated our predictions are around the true values. This residual standard error is very large. A useful rule of thumb tells us that if our data are normally distributed, 95% of observations will fall within two standard deviations of the mean. Applying this rule to our residual standard error, we can say that our model predicts total weight lifting for most lifters within 400.37 kg. 
+The R-squared of the model (mod1) is 0.2090, which means that about 20.9% of the residuals are accounted for in the regression model. 
+
+Residual value equals the observed value minus the estimated value. As the plots show, there seems to be no systematic error in these plots because the data are normal random distributed patterns in the plots. There is an equal spread of residuals across fitted values and explanatory variables. The dots are equally distributed around the residual lines. The data spreads wider when the body weight is between 100 to 150 kg. The residual standard error of 200.1854 gives us a sense of the “typical” size of our residuals, which is how far off do our predictions tend to be. 
+
+Since the R-squared value for the model to predict total weight lifting is 20.9%, we can explain about 20.9% of the variation in the total weight lifting using this model with three variables. The adjusted R-squared is 0.209. Clearly, body weight, ageclass, and sex explain the minority variation in total weight lifting.
+
+We don’t notice a particularly strong pattern in either age class, sex, or body weight. This suggests that there isn’t any strong pattern of our model consistently over-or under-estimating total weight lifting for either of these groups. The spread of the residuals seems like it could perhaps be increasing slightly as fitted values. This suggests that more of our predictions are “bad”, in which the residuals are far from zero, in either direction, as the graph shows.
+
+The residual standard error is the standard deviation of our residuals. The residual has a standard deviation of 200.1854, which means the average difference between the expected residuals from the mean. It turns out that the mean of our residuals will always be zero. So, our residual standard error gives us a sense of how tightly concentrated all of our residuals are around zero, which tells us how tightly concentrated our predictions are around the true values. This residual standard error is very large. A useful rule of thumb tells us that if our data are normally distributed, 95% of observations will fall within two standard deviations of the mean. Applying this rule to our residual standard error, we can say that our model predicts total weight lifting for most lifters within 400.37 kg.
+
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # residual plot
@@ -181,7 +202,20 @@ augment(mod1) %>%
 
 > General Takeaways
 
+In summary, one major conclusion is that age, gender, and bodyweight do have some impact on the total weight lifting, respectively, since we reject all the null hypotheses and are in favor of the alternative. We can conclude that the average total weight lifting for male lifters is higher than the female ones of the same age and bodyweight, which is reasonable and match our common sense. Similar to the bodyweight which the average total weight lifting increase corresponds to the increasing body weight of a lifter of the same age and gender. For age class, the situation is a little different: though the average total weight lifting increases between the ages of 18-34, it decreases when a lifter is older than 34 holding other condition constants. However, the three variables we selected for the model, body weight, age class, and sex, could only explain the minor variation in total weight lifting, which is about 20.9% of the variation in the total weight lifting. Thus further research on the topic is needed.
+
 > Limitation
+
+This dataset was updated three years ago, which is a bit outdated. So, the data might not correctly represent the successful lifting rate impact by the age and equipment during recent times. 
+
+We filter the data for only the lifters in age class "18-19", "20-23", "24-34", "35-39", and "40-44" with their body weight and gender, and we do not consider the other factors that may influence the outcome such as the equipment they used. The research question discusses how the bodyweight would affect the total weight a lifter successfully lifted, and we add two possible confounders–gender and age– to the model. There is about 1% missing data in the dataset, for the body weight, which might impact accuracy of the model, although it might not be significant. We used age class instead of age, so the result might be just a broad relationship, which is not accurate enough in the age category. The sample number is relatively small to answer the research question, and information bias could exist in the age class, which we only consider the lifters who fell into the age class between 18 to 44. Thus, there might be a sampling bias in our data. 
+
+The potential benefits of such data might contribute to improving the training method of the lifters, since improving the total lifting weight is one of the most important goals for them.
+
+Additionally, the database we are sampling from is originally selected from public resources. Therefore, it is possible to have a publicly available dataset.
+
+	However, due to some reasons, such as the missing data, our model could only explain the minor variation in total weight lifting as mentioned previously. Additionally, other variables, such as the equipment used by a lifter that might affect the outcome, have not been included in the model, which could decrease the model's accuracy. We decided not to include an interaction term as well since the r-square between two models does not show much difference, though in general, the r-square with the one containing interaction terms is slightly larger.
+
 
 > Appendix
 > Works Cited
@@ -189,3 +223,72 @@ augment(mod1) %>%
 OpenPowerlifting. “Powerlifting Database.” Kaggle, April 25, 2019. https://www.kaggle.com/open-powerlifting/powerlifting-database.
 
 > R Code
+
+```{r,eval=FALSE}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(ggmosaic)
+library(broom)
+library(knitr)
+
+# loading dataset
+lifting <- read_csv (file = "openpowerlifting.csv")
+
+# Filter data age and body weight
+lifting1 <- lifting[!is.na(lifting$TotalKg), ]
+lifting1 <- lifting1[!is.na(lifting1$BodyweightKg),]
+lifting1 <- lifting1[!is.na(lifting1$AgeClass),]
+
+# Distribution of age
+lifting1%>%
+  ggplot(aes(x=Age))+
+  geom_histogram(binwidth = 2,color='lightblue', fill='steelblue')+
+  ylab('Count') + 
+  xlab('Age') + 
+  theme_classic() + 
+  ggtitle('Distribution of Age Among the Lifters')
+
+# Filter data age 
+lifting1 <- lifting1 %>%
+  filter(AgeClass %in% c("18-19", "20-23", "24-34", "35-39", "40-44"))
+
+# plot graph
+lifting1 %>%
+  ggplot(aes(x = BodyweightKg, y = TotalKg, color = Sex)) +
+  geom_point(alpha = .5, pch = ".") + 
+  geom_smooth(method = 'lm', se = FALSE) +
+  facet_wrap(~ AgeClass) +
+  labs(x = "Body weight (kg)", y = "Total Weight Lifting (kg)") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        legend.position = "none") +
+  scale_color_brewer(palette = "Paired") +
+  theme_bw() 
+
+# numerical summary
+lifting1 %>%
+  summarize(cor(TotalKg, BodyweightKg))
+
+# fitted model
+mod1 <- lm(with(TotalKg ~ BodyweightKg + Sex + AgeClass, data = lifting1))
+coef(mod1)
+glance(mod1)
+
+# residual plot
+augment(mod1)
+augment(mod1) %>%
+    ggplot(aes(x = .fitted, y = .resid)) +
+    geom_point(color = "steelblue", alpha = 1/10) +
+    geom_smooth(se = FALSE, color = "gold") +
+    geom_hline(yintercept = 0, color = "darkslategray") +
+    theme_classic() +
+    labs(x = "Fitted values", y = "Residuals", title = 'Residuals vs Fitted Values (Model 1)')
+
+augment(mod1) %>%
+  ggplot(aes(y = .resid, x = BodyweightKg)) + 
+  geom_point(color = "steelblue", alpha = 1/10) + 
+  geom_smooth(se = FALSE, color = "gold") + 
+  geom_hline(yintercept = 0, color = "darkslategray") + 
+  labs(x = 'Body Weight (kg)', y = 'Residuals', title = 'Residuals vs Explanatory Variable (Model 1)') + 
+  theme_classic()
+```
