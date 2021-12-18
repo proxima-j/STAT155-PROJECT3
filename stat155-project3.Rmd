@@ -214,7 +214,7 @@ The potential benefits of such data might contribute to improving the training m
 
 Additionally, the database we are sampling from is originally selected from public resources. Therefore, it is possible to have a publicly available dataset.
 
-	However, due to some reasons, such as the missing data, our model could only explain the minor variation in total weight lifting as mentioned previously. Additionally, other variables, such as the equipment used by a lifter that might affect the outcome, have not been included in the model, which could decrease the model's accuracy. We decided not to include an interaction term as well since the r-square between two models does not show much difference, though in general, the r-square with the one containing interaction terms is slightly larger.
+However, due to some reasons, such as the missing data, our model could only explain the minor variation in total weight lifting as mentioned previously. Additionally, other variables, such as the equipment used by a lifter that might affect the outcome, have not been included in the model, which could decrease the model's accuracy. We decided not to include an interaction term as well since the r-square between two models does not show much difference, though in general, the r-square with the one containing interaction terms is slightly larger.
 
 
 > Appendix
