@@ -17,6 +17,7 @@ library(ggmosaic)
 library(broom)
 library(knitr)
 ```
+>**Introduction**
 
 > Introduction to Topic
 
@@ -26,7 +27,7 @@ Sport, as an area receiving increased attention, responds as a result of increas
 
   In order to be more specific and accurate, we decided to restructure our research question into:  What is the impact of the bodyweight of the lifters on the total weight they successfully lifted? The response variable in this question would be the total weight the lifters successfully lifted. The term “total weight” refers to the total of best squat in the three lifts-- squat, bench press, and deadlift-- respectively. The two explanatory variables would be the bodyweight of the lifters and the age class. The body weight would be a direct factor to the total weight, which, at the same time, provided the answer to our research question. On the other hand, age class can be a confounding variable, or at least a precision variable that is worth including as an explanatory variable: we believe that age class is associated with the total weight and not caused by body weight.
 
-> Data
+> **Data**
 
 > Context
 
@@ -61,7 +62,7 @@ lifting1 <- lifting1 %>%
   filter(AgeClass %in% c("18-19", "20-23", "24-34", "35-39", "40-44"))
 ```
 
-> Linear Regression
+> **Linear Regression**
 
 > Exploratory Data Analysis
 
@@ -111,6 +112,13 @@ glance(mod1)
 tidy(mod1, conf.int = TRUE)
 ```
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# creating table for fitted model
+mytab <- as.table(cbind(c(93.9983,2.6219,129.9027,36.9534,20.4374, -23.9209, -51.1073), c(91.5343,2.5949,128.5089,35.0142,18.6229,-26.2020,-53.4035), c(96.4623, 2.6490,131.2964,38.8926,22.2520,-21.6398, -48.8111), c(0.0000,0.0000,0.0000,6.254701e-305,6.131519e-108,7.843960e-94,0.0000)))
+colnames(mytab) <- c("Estimate", "Lower 95% CI", "Upper 95% CI", "P-value")
+rownames(mytab) <- c("(Intercept)", " BodyweightKg", " SexM", "AgeClass20-23", "AgeClass24-34", "AgeClass35-39", "AgeClass40-44")
+kable(mytab)
+```
 > Model Interpretation
 
 #Estimates: 
@@ -198,7 +206,7 @@ augment(mod1) %>%
   theme_classic()
 ```
 
-> Conclusion 
+> **Conclusion**
 
 > General Takeaways
 
@@ -273,6 +281,16 @@ lifting1 %>%
 mod1 <- lm(with(TotalKg ~ BodyweightKg + Sex + AgeClass, data = lifting1))
 coef(mod1)
 glance(mod1)
+
+# mod2 <- lm(with(TotalKg ~ BodyweightKg + Sex + AgeClass+BodyweightKg:Sex, data = lifting1))
+# coef(mod2)
+# glance(mod2)
+
+# creating table for fitted model
+mytab <- as.table(cbind(c(93.9983,2.6219,129.9027,36.9534,20.4374, -23.9209, -51.1073), c(91.5343,2.5949,128.5089,35.0142,18.6229,-26.2020,-53.4035), c(96.4623, 2.6490,131.2964,38.8926,22.2520,-21.6398, -48.8111), c(0.0000,0.0000,0.0000,6.254701e-305,6.131519e-108,7.843960e-94,0.0000)))
+colnames(mytab) <- c("Estimate", "Lower 95% CI", "Upper 95% CI", "P-value")
+rownames(mytab) <- c("(Intercept)", " BodyweightKg", " SexM", "AgeClass20-23", "AgeClass24-34", "AgeClass35-39", "AgeClass40-44")
+kable(mytab)
 
 # residual plot
 augment(mod1)
